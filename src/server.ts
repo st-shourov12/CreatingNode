@@ -1,15 +1,11 @@
 import { createServer, IncomingMessage, Server, ServerResponse } from "http";
+import { routeHandler } from "./routes/route";
+
 
 const server: Server = createServer((req: IncomingMessage, res:ServerResponse)=>{
-    // console.log(req.url);
-    // console.log(req.method);
 
-    const url = req.url;
-    const method = req.method;
+    routeHandler(req,res)
 
-    if (url === '/' && method === "GET") {
-        console.log('This is root route');
-    }
 })
 
 server.listen(5000, ()=>{

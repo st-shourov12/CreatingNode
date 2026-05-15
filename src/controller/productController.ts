@@ -1,10 +1,12 @@
 import type { IncomingMessage, ServerResponse } from "http";
 import { readProduct } from "../service/product.service";
 import type { IProduct } from "../types/product.type";
+import { parseBody } from "../utility/parseBody";
 
-export const productController = (req :IncomingMessage, res: ServerResponse) => {
+export const productController = async (req :IncomingMessage, res: ServerResponse) => {
     const url = req.url;
     const method = req.method;
+    console.log("req", req);
 
     const urlParts = url?.split("/");
     // console.log(urlParts);
@@ -27,7 +29,7 @@ export const productController = (req :IncomingMessage, res: ServerResponse) => 
     } else if (method === "GET" && id !== null) {
         const products = readProduct();
         const product = products.find((p:IProduct) => p.id === id);
-        console.log(product);
+        // console.log(product);
         res.writeHead(200,{"content-type" : "application/json"})
         res.end(
             JSON.stringify({
@@ -36,5 +38,16 @@ export const productController = (req :IncomingMessage, res: ServerResponse) => 
             })
         )
         
+    } else if(method === "POST" && url === "/products"){
+        const body = await parseBody(req);
+        console.log(body);
+
+        res.writeHead(200,{"content-type" : "application/json"})
+        res.end(
+            JSON.stringify({
+                message : "Product created Successfully", 
+                data : body
+            })
+        )
     }
 }

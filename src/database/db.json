@@ -48,5 +48,10 @@
         "id" : 10 ,
         "name" : "Date",
         "price" : 600
+    },
+    {
+        "id" : 11 ,
+        "name" : "Pine-apple",
+        "price" : 50
     }
 ]

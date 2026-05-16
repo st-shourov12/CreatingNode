@@ -6,7 +6,7 @@ import { parseBody } from "../utility/parseBody";
 export const productController = async (req :IncomingMessage, res: ServerResponse) => {
     const url = req.url;
     const method = req.method;
-    console.log("req", req);
+    // console.log("req", req);
 
     const urlParts = url?.split("/");
     // console.log(urlParts);
@@ -40,7 +40,7 @@ export const productController = async (req :IncomingMessage, res: ServerRespons
         
     } else if(method === "POST" && url === "/products"){
         const body = await parseBody(req);
-        console.log(body);
+        console.log("body", body);
 
         res.writeHead(200,{"content-type" : "application/json"})
         res.end(

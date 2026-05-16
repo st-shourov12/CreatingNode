@@ -19,6 +19,12 @@
 
 ---
 
+## 🛠 Deployment
+
+(https://node-server-eta-rouge.vercel.app)[https://node-server-eta-rouge.vercel.app/]
+(https://node-server-eta-rouge.vercel.app/products)[https://node-server-eta-rouge.vercel.app/products]
+
+
 ## 📁 Project Structure
 
 ```

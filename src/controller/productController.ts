@@ -65,13 +65,13 @@ export const productController = async (
     const body = await parseBody(req);
     const products = readProduct();
     const index = products.findIndex((p: IProduct) => p.id === id);
-    // console.log(index);
+    console.log(index);
 
     if (index < 0) {
       res.writeHead(404, { "content-type": "application/json" });
       res.end(
         JSON.stringify({
-          message: "Product not found",
+          message: "Product not found!",
           // data : product
         }),
       );
@@ -93,6 +93,31 @@ export const productController = async (
         }),
       );
 
+
+  } else if (method === "DELETE" && id !== null) {
+    const products = readProduct();
+    const index = products.findIndex((p: IProduct) => p.id === id);
+    // console.log(index);
+
+    if (index < 0) {
+      res.writeHead(404, { "content-type": "application/json" });
+      res.end(
+        JSON.stringify({
+          message: "Product not found!",
+          // data : product
+        }),
+      );
+    }
+    products.splice(index , 1);
+    // console.log(products);
+    insertProduct(products)
+    res.writeHead(200, { "content-type": "application/json" });
+      res.end(
+        JSON.stringify({
+          message: "Product deleted successfully",
+        //   data : products[index]
+        }),
+      );
 
   }
 };
